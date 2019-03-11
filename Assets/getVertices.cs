@@ -1,29 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class getVertices : MonoBehaviour {
-    public GameObject mycube;
-    //Matrix 4x4 localToWorld = transform.localToWorldMatrix;
+    GameObject cube;
+    MeshFilter mf;
+
+    public GameObject prefab;
+    Vector3[] uniqueVertices;
+
     // Use this for initialization
     void Start()
     {
-        Mesh mf = mycube.GetComponent<MeshFilter>().mesh;
 
-        Vector3[] vertices = mf.vertices.Distinct().ToArray();
-        int p = 0;
-
-        Debug.Log(vertices.Length);
-        while (p < vertices.Length) { 
-
-            Debug.Log(transform.TransformPoint(vertices[p]));
-            p++;
+        cube = GameObject.Find("myCube");
+        mf = cube.GetComponent<MeshFilter>();
+        uniqueVertices = mf.mesh.vertices.Distinct().ToArray();
+        Debug.Log(uniqueVertices.Length);
+        for (int i = 0; i < uniqueVertices.Length; i++)
+        {
+            Instantiate(prefab, uniqueVertices[i], Quaternion.identity);
+            //Quaternion.identity
+        }
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
