@@ -15,13 +15,13 @@ public class PointsRecordReplay : MonoBehaviour {
 	}
 	
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             RecordCurrentPoints();
             Debug.Log("Recording complete");
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             LoadSavedPoints();
             Debug.Log("Loading complete");
